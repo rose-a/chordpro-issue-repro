@@ -4,8 +4,8 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Ordner.pdf",
-            "detail": "Ordner.pdf erzeugen",
+            "label": "Create songbook",
+            "detail": "Create songbook",
             "type": "shell",
             "group": "build",
             "command": "C:\\Program Files (x86)\\ChordPro.ORG\\ChordPro\\chordpro.exe",
