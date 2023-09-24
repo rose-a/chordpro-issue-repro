@@ -1,0 +1,47 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Ordner.pdf",
+            "detail": "Ordner.pdf erzeugen",
+            "type": "shell",
+            "group": "build",
+            "command": "C:\\Program Files (x86)\\ChordPro.ORG\\ChordPro\\chordpro.exe",
+            "args": [
+                // "--debug",
+                "--start-page-number=2",
+                "-o", "${workspaceFolder}\\Ordner.pdf",
+                "-cfg", "${workspaceFolder}\\ordner.config.json",
+                "--filelist", "${workspaceFolder}\\ordner.file.list"
+            ],
+            "problemMatcher": [
+                {
+                    // ChordPro warnings 
+                    "owner": "chordpro",
+                    "fileLocation": ["relative", "${workspaceFolder}"],
+                    "pattern": {
+                    "regexp": "^\"(.*)\", line (\\d+),\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "message": 3
+                    },
+                    "severity": "warning"
+                },
+                {
+                    // pdf generator warnings 
+                    "owner": "chordpro pdf",
+                    "fileLocation": ["relative", "${workspaceFolder}"],
+                    "pattern": {
+                    "regexp": "^PDF:\\s+(.*)in song starting at line (\\d+) in (.*)$",
+                    "file": 3,
+                    "line": 2,
+                    "message": 1
+                    },
+                    "severity": "info"
+                }
+            ]
+        }
+    ]
+}

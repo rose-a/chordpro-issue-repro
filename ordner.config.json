@@ -1,0 +1,151 @@
+// Configuration for ChordPro.
+//
+// This is a relaxed JSON document, so comments are possible.
+{
+  // Includes. These are processed first, before the rest of
+  // the config file.
+  //
+  // "include" takes a list of either filenames or preset names.
+  // "include" : [ "modern1", "lib/mycfg.json" ],
+  // "include" : [ "default" ],
+  // General settings, to be changed by legacy configs and
+  // command line.
+  "settings": {
+    // Chords parsing strategy.
+    // Strict (only known) or relaxed (anything that looks sane).
+    "chordnames": "relaxed"
+  },
+  // Metadata.
+  // For these keys you can use {meta key ...} as well as {key ...}.
+  // If strict is nonzero, only the keys named here are allowed.
+  // If strict is zero, {meta ...} will accept any key.
+  // Important: "title" and "subtitle" must always be in this list.
+  // The separator is used to concatenate multiple values.
+  "metadata": {
+    "keys": [
+      "title",
+      "subtitle",
+      "artist",
+      "composer",
+      "lyricist",
+      "arranger",
+      "album",
+      "copyright",
+      "year",
+      "sorttitle",
+      "key",
+      "time",
+      "tempo",
+      "capo",
+      "duration",
+      "buechle",
+      "keywords",
+      "collection"
+    ],
+    "strict": true,
+    "separator": "; "
+  },
+  // Instrument settings. These are usually set by a separate
+  // config file.
+  //
+  "instrument" : {
+    "type"        : "guitar",
+    "description" : "Guitar, 6 strings, standard tuning",
+  },
+  // Diagnostig messages.
+  "diagnostics": {
+    "format": "\"%f\", line %n, %m\n\t%l",
+  },
+  // Table of contents.
+  "contents": [
+    {
+      "fields": [
+        "songindex"
+      ],
+      "label": "Inhalt nach Reihenfolge",
+      "line": "%{buechle|%{} - }%{title}%{artist| - %{}}",
+      "pageno"   : "",
+      "fold": false,
+      "omit": false
+    },
+    {
+      "fields": [
+        "sorttitle",
+        "artist"
+      ],
+      "label": "Inhalt nach Titel",
+      "line": "%{title}%{artist| - %{}}",
+      "pageno"   : "%{buechle}",
+      "fold": false,
+      "omit": false
+    },
+    {
+      "fields": [
+        "artist",
+        "sorttitle"
+      ],
+      "label": "Inhalt nach Interpret",
+      "line": "%{artist|%{} - }%{title}",
+      "pageno"   : "",
+      "fold": false,
+      "omit": false
+    }
+  ],
+  // Layout definitions for PDF output.
+  "pdf": {
+    // Even/odd pages. A value of -1 denotes odd/even pages.
+    "even-odd-pages": -1,
+    // Align songs to even/odd pages.
+    "pagealign-songs": 2,
+    // Formats.
+    "formats": {
+      // Titles/Footers.
+      // Titles/footers have 3 parts, which are printed left,
+      // centered and right.
+      // For even/odd printing, the order is reversed.
+      // By default, a page has:
+      "default": {
+        // No title/subtitle.
+        "title": [
+          "%{buechle}",
+          "%{title}",
+          ""
+        ],
+        "subtitle": ["", "", ""],
+        // Footer is title -- page number.
+        "footer": [
+          "%{title}",
+          "",
+          ""
+        ]
+      },
+      // The first page of a song has:
+      "title": {
+        // Title and subtitle.
+        "title": [
+          "%{buechle}",
+          "%{title}",
+          ""
+        ],
+        "subtitle": [
+          "%{artist}",
+          "",
+          ""
+        ],
+        // Footer with page number.
+        "footer": [
+          "",
+          "",
+          ""
+        ]
+      },
+      // The very first output page is slightly different:
+      "first": {
+        // It has title and subtitle, like normal 'first' pages.
+        // But no footer.
+        "footer": ["", "", ""]
+      }
+    }
+  }
+}
+// End of config.
