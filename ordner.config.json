@@ -63,7 +63,7 @@
         "songindex"
       ],
       "label": "Inhalt nach Reihenfolge",
-      "line": "%{buechle|%{} - }%{title}%{artist| - %{}}",
+      "line": "%{title}%{artist| - %{}}",
       "pageno"   : "",
       "fold": false,
       "omit": false
@@ -75,7 +75,7 @@
       ],
       "label": "Inhalt nach Titel",
       "line": "%{title}%{artist| - %{}}",
-      "pageno"   : "%{buechle}",
+      "pageno"   : "",
       "fold": false,
       "omit": false
     },
@@ -107,7 +107,7 @@
       "default": {
         // No title/subtitle.
         "title": [
-          "%{buechle}",
+          "",
           "%{title}",
           ""
         ],
@@ -123,7 +123,7 @@
       "title": {
         // Title and subtitle.
         "title": [
-          "%{buechle}",
+          "",
           "%{title}",
           ""
         ],
